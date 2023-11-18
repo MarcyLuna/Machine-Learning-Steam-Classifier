@@ -1,0 +1,21 @@
+import json
+
+with open('games.json', 'rb') as file:
+    data = json.loads(file.read().decode('utf-8'))
+
+cleaned_data = {}
+
+for game_id, game_info in data.items():
+    cleaned_data[game_id] = {
+        "name": game_info["name"],
+        "recommendations": game_info["recommendations"],
+        "categories": game_info["categories"],
+        "genres": game_info["genres"],
+        "positive": game_info["positive"],
+        "negative": game_info["negative"],
+        "estimated_owners": game_info["estimated_owners"],
+        "tags": game_info["tags"]
+    }
+
+with open('cleaned_data.json', 'w', encoding='utf-8') as output_file:
+    json.dump(cleaned_data, output_file, ensure_ascii=False, indent=4)

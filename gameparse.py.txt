@@ -1,0 +1,10 @@
+import json
+
+with open('USER_INFO_HERE.json', 'r', encoding='utf-8') as file:
+    data = json.load(file)
+
+app_ids = [str(game["appid"]) for game in data["response"]["games"]]
+
+with open('game_ids.txt', 'w') as output_file:
+    for app_id in app_ids:
+        output_file.write(app_id + '\n')

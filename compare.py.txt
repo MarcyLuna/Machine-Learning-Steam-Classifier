@@ -1,0 +1,21 @@
+import json
+
+with open('cleaned_data.json', 'r', encoding='utf-8') as file:
+    cleaned_data = json.load(file)
+
+def get_game_info(game_ids):
+    game_info = {}
+    for game_id in game_ids:
+        if game_id in cleaned_data:
+            game_info[game_id] = cleaned_data[game_id]
+    return game_info
+
+with open('game_ids.txt', 'r') as file:
+    game_ids = [line.strip() for line in file]
+
+output_data = {
+    "games": get_game_info(game_ids)
+}
+
+with open('output_data.json', 'w', encoding='utf-8') as file:
+    json.dump(output_data, file, ensure_ascii=False, indent=4)
