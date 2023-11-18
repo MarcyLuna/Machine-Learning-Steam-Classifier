@@ -19,7 +19,12 @@ https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=108D77E9CE4
 Using the retrieved data, we compared and matched the IDs to the same ID occurences within the `cleaned_data.json`. This lets us return a json list of games for each team member with matching information to the `cleaned_data.json` file.
 
 ## Data Cleaning
+To properly clean the main game json file, you must run the json through three python scripts in this order:
+1. Run the json through cleanup.py
+2. Next, you can parse out all the game ids from the base API request response with gameparse.py
+3. Finally,  you can get all the info for the parsed user game ids and matched them with the cleaned_data.json to get all the fields for those game ids for each user data json with compare.py
 
+This will yield a cleaned set of game data that you can use for our model
 ## Preprocessing
 After aquiring our datasets, its now time to preprocess them before training the model.
 
